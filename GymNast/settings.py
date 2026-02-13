@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r+32kv^#&9_+r#f)&g8!w8tfus177w+4drgjqsx@+tdum9w2@v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app' '.onrender.com']
+ALLOWED_HOSTS = ['gym-management-api-qpyx.onrender.com', '.onrender.com',   '127.0.0.1']
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
