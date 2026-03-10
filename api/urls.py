@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework_nested import routers
 from classes.views import FitnessClassViewSet, InstructorViewSet, InstructorClassViewSet, ClassBookingViewSet, FeedbackViewSet
-from memberships.views import MemberShipPlanViewSet, SubscriptionViewSet
+from memberships.views import MemberShipPlanViewSet, SubscriptionViewSet, initiate_payment, payment_success, payment_fail
 
 router = routers.DefaultRouter()
 router.register('classes', FitnessClassViewSet, basename='classes')
@@ -16,5 +16,8 @@ classes_router.register('feedbacks', FeedbackViewSet, basename='feedback')
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(instructor_router.urls)),
-    path("", include(classes_router.urls))
+    path("", include(classes_router.urls)),
+    path('initiate/payment/', initiate_payment, name='initiate-payment'),
+    path('payment/success/', payment_success, name='success-payment'),
+    path('payment/fail/', payment_fail, name='fail-payment'),
 ]

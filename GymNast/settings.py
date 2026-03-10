@@ -24,7 +24,7 @@ from decouple import config
 SECRET_KEY = 'django-insecure-r+32kv^#&9_+r#f)&g8!w8tfus177w+4drgjqsx@+tdum9w2@v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gym-management-api-qpyx.onrender.com', '.onrender.com',   '127.0.0.1']
 AUTH_USER_MODEL = 'users.User'
@@ -160,8 +160,11 @@ REST_FRAMEWORK = {
     ),
 }
 
+FRONTEND_URL = "http://localhost:5173"
+BACKEND_URL = "http://127.0.0.1:8000"
+
 SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
+   'AUTH_HEADER_TYPES': ('Bearer',),
    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }

@@ -42,12 +42,19 @@ class ClassBookingSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        user = self.context['user']
-        validated_data['user'] = user
-        obj = validated_data['fitness_class']
-        if ClassBooking.objects.filter(pk=obj.pk):
-            raise serializers.ValidationError('You have alreay booked this class')
-        return super().create(validated_data)
+      user = self.context['user']
+      validated_data['user'] = user
+      fitness_class = validated_data['fitness_class']
+
+      if ClassBooking.objects.filter(
+          user=user,
+          fitness_class=fitness_class
+      ).exists():
+          raise serializers.ValidationError(
+              "You have already booked this class"
+          )
+
+      return super().create(validated_data)
 
 
 class FeedbackSerializer(serializers.ModelSerializer):
